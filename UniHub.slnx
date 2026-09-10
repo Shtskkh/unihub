@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/UniHub.Core.Domain/UniHub.Core.Domain.csproj" />
+  </Folder>
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/UniHub.Shared/UniHub.Shared.csproj" />
   </Folder>
