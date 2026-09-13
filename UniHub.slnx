@@ -6,6 +6,9 @@
   <Folder Name="/src/Identity/">
     <Project Path="src/Identity/UniHub.Identity.Domain/UniHub.Identity.Domain.csproj" />
   </Folder>
+  <Folder Name="/src/Plans/">
+    <Project Path="src/Plans/UniHub.Plans.Domain/UniHub.Plans.Domain.csproj" />
+  </Folder>
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/UniHub.Shared/UniHub.Shared.csproj" />
   </Folder>
