@@ -1,3 +1,4 @@
+using UniHub.Identity.Contracts.Users;
 using UniHub.Shared.Classes;
 using UniHub.Shared.Interfaces;
 
