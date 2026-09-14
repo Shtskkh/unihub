@@ -4,7 +4,7 @@ namespace UniHub.Core.Infrastructure;
 
 public class CoreDbContext : DbContext
 {
-    public CoreDbContext(DbContextOptions options)
+    public CoreDbContext(DbContextOptions<CoreDbContext> options)
         : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

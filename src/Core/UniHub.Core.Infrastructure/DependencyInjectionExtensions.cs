@@ -20,7 +20,6 @@ public static class DependencyInjectionExtensions
                 ?? throw new InvalidOperationException(
                     "Строка подключения \"CoreDbConnection\" не сконфигурирована."
                 );
-            ;
 
             services.AddDbContextPool<CoreDbContext>(options =>
                 options.UseNpgsql(
