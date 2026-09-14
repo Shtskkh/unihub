@@ -4,4 +4,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Ardalis.SmartEnum" Version="8.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\UniHub.Shared\UniHub.Shared.csproj" />
+    <ProjectReference Include="..\UniHub.Plans.Contracts\UniHub.Plans.Contracts.csproj" />
+  </ItemGroup>
 </Project>
