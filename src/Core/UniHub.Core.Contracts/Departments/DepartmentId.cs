@@ -1,3 +1,3 @@
-namespace UniHub.Core.Domain.Aggregates.Departments;
+namespace UniHub.Core.Contracts.Departments;
 
 public readonly record struct DepartmentId(int Value);

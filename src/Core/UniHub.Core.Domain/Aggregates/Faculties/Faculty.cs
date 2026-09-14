@@ -1,5 +1,6 @@
 using UniHub.Shared.Classes;
 using UniHub.Shared.Interfaces;
+using UniHub.Core.Contracts.Faculties;
 
 namespace UniHub.Core.Domain.Aggregates.Faculties;
 

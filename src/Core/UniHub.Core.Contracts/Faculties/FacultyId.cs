@@ -1,3 +1,3 @@
-namespace UniHub.Core.Domain.Aggregates.Faculties;
+namespace UniHub.Core.Contracts.Faculties;
 
 public readonly record struct FacultyId(int Value);

@@ -1,6 +1,7 @@
-using UniHub.Core.Domain.Aggregates.Faculties;
 using UniHub.Shared.Classes;
 using UniHub.Shared.Interfaces;
+using UniHub.Core.Contracts.Faculties;
+using UniHub.Core.Contracts.Departments;
 
 namespace UniHub.Core.Domain.Aggregates.Departments;
 

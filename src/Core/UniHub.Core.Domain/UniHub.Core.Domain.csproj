@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\UniHub.Shared\UniHub.Shared.csproj" />
+    <ProjectReference Include="..\UniHub.Core.Contracts\UniHub.Core.Contracts.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
