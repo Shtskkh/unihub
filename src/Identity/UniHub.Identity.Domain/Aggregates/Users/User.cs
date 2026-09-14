@@ -7,9 +7,7 @@ namespace UniHub.Identity.Domain.Aggregates.Users;
 public sealed class User : Entity<UserId>, IAggregateRoot
 {
     // Для EF Core
-    private User()
-    {
-    }
+    private User() { }
 
     public User(
         UserId id,
@@ -19,7 +17,8 @@ public sealed class User : Entity<UserId>, IAggregateRoot
         Password password,
         Birthday birthday,
         Gender gender
-    ) : base(id)
+    )
+        : base(id)
     {
         Name = name;
         Email = email;

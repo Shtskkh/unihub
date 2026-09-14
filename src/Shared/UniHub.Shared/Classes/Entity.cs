@@ -1,14 +1,12 @@
 namespace UniHub.Shared.Classes;
 
 public abstract class Entity<TId> : IEquatable<Entity<TId>>
-    where TId: struct, IEquatable<TId>
+    where TId : struct, IEquatable<TId>
 {
     public TId Id { get; protected init; }
 
     // Для EF Core
-    protected Entity()
-    {
-    }
+    protected Entity() { }
 
     protected Entity(TId id)
     {
@@ -19,10 +17,14 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
 
     public bool Equals(Entity<TId>? other)
     {
-        if (other is null) return false;
-        if (ReferenceEquals(this, other)) return true;
-        if (IsTransient || other.IsTransient) return false;
-        if (GetType() != other.GetType()) return false;
+        if (other is null)
+            return false;
+        if (ReferenceEquals(this, other))
+            return true;
+        if (IsTransient || other.IsTransient)
+            return false;
+        if (GetType() != other.GetType())
+            return false;
 
         return Id.Equals(other.Id);
     }
@@ -33,7 +35,8 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
 
     public override string ToString() => $"{GetType().Name} [Id={Id}]";
 
-    public static bool operator ==(Entity<TId>? left, Entity<TId>? right) => left is null ? right is null : left.Equals(right);
+    public static bool operator ==(Entity<TId>? left, Entity<TId>? right) =>
+        left is null ? right is null : left.Equals(right);
 
     public static bool operator !=(Entity<TId>? left, Entity<TId>? right) => !(left == right);
 }

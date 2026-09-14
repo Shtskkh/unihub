@@ -1,17 +1,21 @@
+using UniHub.Core.Contracts.Faculties;
 using UniHub.Shared.Classes;
 using UniHub.Shared.Interfaces;
-using UniHub.Core.Contracts.Faculties;
 
 namespace UniHub.Core.Domain.Aggregates.Faculties;
 
 public sealed class Faculty : Entity<FacultyId>, IAggregateRoot
 {
     // Для EF Core
-    private Faculty()
-    {
-    }
+    private Faculty() { }
 
-    public Faculty(FacultyId id, FacultyTitle title, FacultyShortTitle shortTitle, FacultyNumber number) : base(id)
+    public Faculty(
+        FacultyId id,
+        FacultyTitle title,
+        FacultyShortTitle shortTitle,
+        FacultyNumber number
+    )
+        : base(id)
     {
         Title = title;
         ShortTitle = shortTitle;
