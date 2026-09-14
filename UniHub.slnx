@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/Core/">
+    <Project Path="src/Core/UniHub.Core.Contracts/UniHub.Core.Contracts.csproj" />
     <Project Path="src/Core/UniHub.Core.Domain/UniHub.Core.Domain.csproj" />
   </Folder>
   <Folder Name="/src/Identity/">
