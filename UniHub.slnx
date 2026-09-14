@@ -5,6 +5,7 @@
     <Project Path="src/Core/UniHub.Core.Domain/UniHub.Core.Domain.csproj" />
   </Folder>
   <Folder Name="/src/Identity/">
+    <Project Path="src/Identity/UniHub.Identity.Contracts/UniHub.Identity.Contracts.csproj" />
     <Project Path="src/Identity/UniHub.Identity.Domain/UniHub.Identity.Domain.csproj" />
   </Folder>
   <Folder Name="/src/Plans/">
