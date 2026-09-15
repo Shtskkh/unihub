@@ -10,13 +10,13 @@ public static class DependencyInjectionExtensions
     {
         public void AddCoreInfrastructure(IConfiguration configuration)
         {
-            services.ConfigureDbConnections(configuration);
+            services.ConfigureDbConnection(configuration);
         }
 
-        private void ConfigureDbConnections(IConfiguration configuration)
+        private void ConfigureDbConnection(IConfiguration configuration)
         {
             var connectionString =
-                configuration.GetConnectionString("CoreDbConnection")
+                configuration.GetConnectionString(CoreDbContext.ConnectionStringName)
                 ?? throw new InvalidOperationException(
                     "Строка подключения \"CoreDbConnection\" не сконфигурирована."
                 );
@@ -26,7 +26,10 @@ public static class DependencyInjectionExtensions
                     connectionString,
                     builder =>
                     {
-                        builder.MigrationsHistoryTable("__EFMigrationsHistory", "core");
+                        builder.MigrationsHistoryTable(
+                            "__EFMigrationsHistory",
+                            CoreDbContext.Schema
+                        );
                     }
                 )
             );

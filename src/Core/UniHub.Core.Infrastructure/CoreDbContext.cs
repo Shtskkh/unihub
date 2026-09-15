@@ -7,9 +7,12 @@ public class CoreDbContext : DbContext
     public CoreDbContext(DbContextOptions<CoreDbContext> options)
         : base(options) { }
 
+    public const string Schema = "Core";
+    public const string ConnectionStringName = "CoreDbConnection";
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("core");
+        modelBuilder.HasDefaultSchema(Schema);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CoreDbContext).Assembly);
     }
 }
