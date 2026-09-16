@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace UniHub.Shared.Migrations;
 
@@ -11,17 +12,19 @@ public static class MigratorHost
         string[] args,
         string schema,
         string connectionStringName = "DbConnection",
-        string migrationsHistoryTable = "__EFMigrationsHistory"
+        string migrationsHistoryTable = "__EFMigrationsHistory",
+        CancellationToken cancellationToken = default
     )
         where TContext : DbContext
     {
         var builder = Host.CreateApplicationBuilder(args);
-        var connectionString = builder.Configuration.GetConnectionString(connectionStringName);
 
         if (builder.Environment.IsProduction())
             throw new InvalidOperationException(
-                "Не используйте мигратор в продакшее, используйте efbundle."
+                "Не используйте мигратор в продакшене. Используйте efbundle."
             );
+
+        var connectionString = builder.Configuration.GetConnectionString(connectionStringName);
 
         if (connectionString is null)
             throw new InvalidOperationException(
@@ -39,8 +42,33 @@ public static class MigratorHost
             )
         );
 
-        builder.Services.AddHostedService<MigrationWorker<TContext>>();
+        builder.Services.AddScoped<MigrationRunner<TContext>>();
 
-        await builder.Build().RunAsync();
+        using var host = builder.Build();
+        await using var scope = host.Services.CreateAsyncScope();
+
+        try
+        {
+            var runner = scope.ServiceProvider.GetRequiredService<MigrationRunner<TContext>>();
+            await runner.RunAsync(cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            Environment.ExitCode = 130;
+        }
+        catch (Exception e)
+        {
+            var logger = scope.ServiceProvider.GetRequiredService<
+                ILogger<MigrationRunner<TContext>>
+            >();
+
+            logger.LogError(
+                e,
+                "Ошибка при применении миграций для {Context}",
+                typeof(TContext).Name
+            );
+
+            Environment.ExitCode = -1;
+        }
     }
 }
