@@ -4,6 +4,7 @@
     <Project Path="src/Core/UniHub.Core.Contracts/UniHub.Core.Contracts.csproj" />
     <Project Path="src/Core/UniHub.Core.Domain/UniHub.Core.Domain.csproj" />
     <Project Path="src/Core/UniHub.Core.Infrastructure/UniHub.Core.Infrastructure.csproj" />
+    <Project Path="src/Core/UniHub.Core.Migrator/UniHub.Core.Migrator.csproj" />
   </Folder>
   <Folder Name="/src/Identity/">
     <Project Path="src/Identity/UniHub.Identity.Contracts/UniHub.Identity.Contracts.csproj" />
