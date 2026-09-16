@@ -3,6 +3,7 @@
   <Folder Name="/src/Core/">
     <Project Path="src/Core/UniHub.Core.Contracts/UniHub.Core.Contracts.csproj" />
     <Project Path="src/Core/UniHub.Core.Domain/UniHub.Core.Domain.csproj" />
+    <Project Path="src/Core/UniHub.Core.Infrastructure/UniHub.Core.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/Identity/">
     <Project Path="src/Identity/UniHub.Identity.Contracts/UniHub.Identity.Contracts.csproj" />
