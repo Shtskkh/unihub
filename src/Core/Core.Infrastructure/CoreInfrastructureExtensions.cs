@@ -1,3 +1,4 @@
+using Core.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class CoreInfrastructureExtensions
         public void AddCoreInfrastructure(IConfiguration configuration)
         {
             services.ConfigureDbContext(configuration);
+            services.AddDbContextProvider();
         }
 
         private void ConfigureDbContext(IConfiguration configuration)
@@ -26,6 +28,11 @@ public static class CoreInfrastructureExtensions
                     builder.MigrationsAssembly(typeof(CoreDbContext).Assembly.FullName);
                     builder.MigrationsHistoryTable("__EFMigrationsHistory", CoreDbContext.DefaultSchema);
                 }));
+        }
+
+        private void AddDbContextProvider()
+        {
+            services.AddScoped<ICoreDbContext, CoreDbContext>();
         }
     }
 }
