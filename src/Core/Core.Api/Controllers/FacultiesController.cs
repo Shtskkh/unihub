@@ -1,5 +1,6 @@
 using Core.Api.Contracts.Faculties;
 using Core.Application.Faculties.Create;
+using Core.Application.Faculties.GetAll;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,19 @@ namespace Core.Api.Controllers;
 [Route("/api/v1/[controller]")]
 public sealed class FacultiesController(IMapper mapper) : ControllerBase
 {
+    [HttpGet]
+    [ProducesResponseType(typeof(IReadOnlyCollection<FacultyDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllAsync([FromServices] GetAllFacultiesHandler handler, CancellationToken ct)
+    {
+        var command = new GetAllFacultiesRequest();
+        var commandResult = await handler.Handle(command, ct);
+
+        commandResult.IsSuccess(out var faculties);
+        var facultiesDto = mapper.Map<IReadOnlyCollection<FacultyDto>>(faculties!);
+
+        return Ok(facultiesDto);
+    }
+
     [HttpPost]
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created, Description = "ID факультета.")]
     public async Task<IActionResult> CreateFacultyAsync(
