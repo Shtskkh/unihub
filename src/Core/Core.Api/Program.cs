@@ -1,3 +1,4 @@
+using Core.Api;
 using Core.Application;
 using Core.Infrastructure;
 using Scalar.AspNetCore;
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCoreInfrastructure(builder.Configuration);
 
 builder.Services.AddCoreApplication();
+
+builder.Services.AddCoreApi();
 
 builder.Services.AddControllers();
 
