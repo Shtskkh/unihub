@@ -7,6 +7,12 @@ builder.Services.AddCoreInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
 
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
