@@ -6,6 +6,7 @@
     <Project Path="src/Core/Core.Contracts/Core.Contracts.csproj" />
     <Project Path="src/Core/Core.Domain/Core.Domain.csproj" />
     <Project Path="src/Core/Core.Infrastructure/Core.Infrastructure.csproj" />
+    <Project Path="src/Core/Core.Migrator/Core.Migrator.csproj" />
   </Folder>
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/Shared.Domain/Shared.Domain.csproj" />
