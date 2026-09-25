@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Shared\Shared.Domain\Shared.Domain.csproj"/>
+        <ProjectReference Include="..\Core.Domain\Core.Domain.csproj"/>
     </ItemGroup>
 
 </Project>
