@@ -4,7 +4,7 @@ using Shared.Domain.Errors;
 
 namespace Core.Domain.Faculties;
 
-public readonly record struct FacultyTitle
+public readonly record struct FacultyTitle : IValueObject<FacultyTitle, string>
 {
     private FacultyTitle(string value)
     {
