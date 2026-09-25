@@ -5,7 +5,7 @@ namespace Core.Infrastructure;
 
 public class CoreDbContext : DbContext, ICoreDbContext
 {
-    public const string DefaultSchema = "Core";
+    public const string DefaultSchema = "core";
     public const string DefaultConnectionStringName = "CoreDbContext";
 
     public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options)
