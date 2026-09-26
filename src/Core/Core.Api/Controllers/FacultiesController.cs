@@ -1,6 +1,7 @@
 using Core.Api.Contracts.Faculties;
 using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
+using Core.Application.Faculties.GetById;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,25 @@ public sealed class FacultiesController(IMapper mapper) : ControllerBase
         var facultiesDto = mapper.Map<IReadOnlyCollection<FacultyDto>>(commandResult);
 
         return Ok(facultiesDto);
+    }
+
+    [HttpGet("{facultyId:int}")]
+    [ProducesResponseType(typeof(FacultyDto), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByIdAsync(
+        [FromServices] GetFacultyByIdHandler handler,
+        int facultyId,
+        CancellationToken ct
+    )
+    {
+        var command = new GetFacultyByIdCommand(facultyId);
+        var commandResult = await handler.Handle(command, ct);
+
+        if (commandResult.IsFailure(out var error))
+            return NotFound(error);
+
+        commandResult.IsSuccess(out var faculty);
+
+        return Ok(mapper.Map<FacultyDto>(faculty!));
     }
 
     [HttpPost]

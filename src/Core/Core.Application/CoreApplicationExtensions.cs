@@ -1,5 +1,6 @@
 using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
+using Core.Application.Faculties.GetById;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Application;
@@ -22,6 +23,7 @@ public static class CoreApplicationExtensions
         {
             services.AddScoped<CreateFacultyHandler>();
             services.AddScoped<GetAllFacultiesHandler>();
+            services.AddScoped<GetFacultyByIdHandler>();
         }
     }
 }
