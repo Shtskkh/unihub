@@ -17,8 +17,7 @@ public sealed class FacultiesController(IMapper mapper) : ControllerBase
         var command = new GetAllFacultiesRequest();
         var commandResult = await handler.Handle(command, ct);
 
-        commandResult.IsSuccess(out var faculties);
-        var facultiesDto = mapper.Map<IReadOnlyCollection<FacultyDto>>(faculties!);
+        var facultiesDto = mapper.Map<IReadOnlyCollection<FacultyDto>>(commandResult);
 
         return Ok(facultiesDto);
     }
