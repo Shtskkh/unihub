@@ -1,10 +1,11 @@
-using Core.Api.Contracts.Departments;
 using Core.Api.Contracts.Faculties;
 using Core.Api.Shared;
 using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
 using Core.Application.Faculties.GetById;
 using Core.Application.Faculties.GetDepartments;
+using Core.Contracts.Departments;
+using Core.Contracts.Faculties;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-using Core.Api.Contracts.Departments;
+using Core.Contracts.Departments;
 using Core.Domain.Departments;
 using Mapster;
 

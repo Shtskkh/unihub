@@ -1,4 +1,4 @@
-using Core.Api.Contracts.Faculties;
+using Core.Contracts.Faculties;
 using Core.Domain.Faculties;
 using Mapster;
 
