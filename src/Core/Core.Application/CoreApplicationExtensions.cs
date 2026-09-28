@@ -4,6 +4,7 @@ using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
 using Core.Application.Faculties.GetById;
 using Core.Application.Faculties.GetDepartments;
+using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Application;
@@ -14,6 +15,8 @@ public static class CoreApplicationExtensions
     {
         public void AddCoreApplication()
         {
+            TypeAdapterConfig.GlobalSettings.Scan(typeof(CoreApplicationExtensions).Assembly);
+            services.AddMapster();
             services.AddRequestHandlers();
         }
 

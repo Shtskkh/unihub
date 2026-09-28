@@ -1,14 +1,14 @@
-using Core.Contracts.Departments;
-using Core.Domain.Departments;
+using Core.Contracts.Faculties;
+using Core.Domain.Faculties;
 using Mapster;
 
-namespace Core.Api.Mappings;
+namespace Core.Application.Mappings;
 
-public sealed class DepartmentMappings : IRegister
+public sealed class FacultyMappingConfigs : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Department, DepartmentDto>()
+        config.NewConfig<Faculty, FacultyDto>()
             .Map(dest => dest.Id, src => src.Id.Value)
             .Map(dest => dest.Title, src => src.Title.Value);
     }

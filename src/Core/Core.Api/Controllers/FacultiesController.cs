@@ -7,14 +7,13 @@ using Core.Application.Faculties.GetDepartments;
 using Core.Contracts.Departments;
 using Core.Contracts.Faculties;
 using Mapster;
-using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core.Api.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
-public sealed class FacultiesController(IMapper mapper) : ControllerBase
+public sealed class FacultiesController : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyCollection<FacultyDto>), StatusCodes.Status200OK)]
@@ -47,7 +46,7 @@ public sealed class FacultiesController(IMapper mapper) : ControllerBase
         [FromForm] CreateFacultyDto dto,
         CancellationToken ct)
     {
-        var command = mapper.Map<CreateFacultyCommand>(dto);
+        var command = dto.Adapt<CreateFacultyCommand>();
         var commandResult = await handler.Handle(command, ct);
 
         return commandResult.ToHttpResult(id => Results.Created($"/api/v1/faculties/{id}", id));
