@@ -2,7 +2,6 @@ using Core.Api.Contracts.Departments;
 using Core.Api.Shared;
 using Core.Application.Departments.Create;
 using Core.Application.Departments.GetById;
-using Core.Contracts.Departments;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +20,7 @@ public sealed class DepartmentsController : ControllerBase
         var command = new GetDepartmentByIdRequest(departmentId);
         var commandResult = await handler.Handle(command, cancellationToken);
 
-        return commandResult.ToHttpResult(department => Results.Ok(department.Adapt<DepartmentDto>()));
+        return commandResult.ToHttpResult(Results.Ok);
     }
 
     [HttpPost]

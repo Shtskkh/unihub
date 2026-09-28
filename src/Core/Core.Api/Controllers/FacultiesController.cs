@@ -17,12 +17,13 @@ public sealed class FacultiesController : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyCollection<FacultyDto>), StatusCodes.Status200OK)]
-    public async Task<IResult> GetAllAsync([FromServices] GetAllFacultiesHandler handler, CancellationToken ct)
+    public async Task<IResult> GetAllAsync(
+        [FromServices] GetAllFacultiesHandler handler,
+        CancellationToken cancellationToken)
     {
-        var command = new GetAllFacultiesRequest();
-        var commandResult = await handler.Handle(command, ct);
+        var faculties = await handler.Handle(new GetAllFacultiesRequest(), cancellationToken);
 
-        return Results.Ok(commandResult.Adapt<IReadOnlyCollection<FacultyDto>>());
+        return Results.Ok(faculties);
     }
 
     [HttpGet("{facultyId:int}")]
@@ -30,13 +31,13 @@ public sealed class FacultiesController : ControllerBase
     public async Task<IResult> GetByIdAsync(
         [FromServices] GetFacultyByIdHandler handler,
         int facultyId,
-        CancellationToken ct
+        CancellationToken cancellationToken
     )
     {
-        var command = new GetFacultyByIdCommand(facultyId);
-        var commandResult = await handler.Handle(command, ct);
+        var command = new GetFacultyByIdRequest(facultyId);
+        var commandResult = await handler.Handle(command, cancellationToken);
 
-        return commandResult.ToHttpResult(source => Results.Ok(source.Adapt<FacultyDto>()));
+        return commandResult.ToHttpResult(Results.Ok);
     }
 
     [HttpPost]
@@ -44,10 +45,10 @@ public sealed class FacultiesController : ControllerBase
     public async Task<IResult> CreateFacultyAsync(
         [FromServices] CreateFacultyHandler handler,
         [FromForm] CreateFacultyDto dto,
-        CancellationToken ct)
+        CancellationToken cancellationToken)
     {
         var command = dto.Adapt<CreateFacultyCommand>();
-        var commandResult = await handler.Handle(command, ct);
+        var commandResult = await handler.Handle(command, cancellationToken);
 
         return commandResult.ToHttpResult(id => Results.Created($"/api/v1/faculties/{id}", id));
     }
@@ -62,7 +63,6 @@ public sealed class FacultiesController : ControllerBase
         var command = new GetFacultyDepartmentsRequest(facultyId);
         var commandResult = await handler.Handle(command, cancellationToken);
 
-        return commandResult.ToHttpResult(departments =>
-            Results.Ok(departments.Adapt<IReadOnlyCollection<DepartmentDto>>()));
+        return commandResult.ToHttpResult(Results.Ok);
     }
 }
