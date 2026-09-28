@@ -1,25 +1,25 @@
 using Core.Application.Shared;
 using Core.Domain.Faculties;
-using LightResults;
+using Shared.Domain.Errors;
+using ZeroAlloc.Results;
+using ZeroAlloc.Results.Extensions;
 
 namespace Core.Application.Faculties.Create;
 
-public sealed class CreateFacultyHandler(ICoreDbContext context) : IHandler<CreateFacultyCommand, Result<int>>
+public sealed class CreateFacultyHandler(ICoreDbContext context) : IHandler<CreateFacultyCommand, Result<int, Error>>
 {
-    public async Task<Result<int>> Handle(CreateFacultyCommand request, CancellationToken ct)
+    public async Task<Result<int, Error>> Handle(CreateFacultyCommand request, CancellationToken ct)
     {
-        var createFacultyTitleResult = FacultyTitle.Create(request.Title);
+        var facultyResult =
+            from title in FacultyTitle.Create(request.Title)
+            select new Faculty(default, title);
 
-        if (createFacultyTitleResult.IsFailure(out var error))
-            return Result.Failure<int>(error);
+        return await facultyResult.MapAsync(async faculty =>
+        {
+            await context.Set<Faculty>().AddAsync(faculty, ct);
+            await context.SaveChangesAsync(ct);
 
-        createFacultyTitleResult.IsSuccess(out var facultyTitle);
-
-        var newFaculty = new Faculty(default, facultyTitle);
-
-        await context.Set<Faculty>().AddAsync(newFaculty, ct);
-        await context.SaveChangesAsync(ct);
-
-        return Result.Success(newFaculty.Id.Value);
+            return faculty.Id.Value;
+        });
     }
 }

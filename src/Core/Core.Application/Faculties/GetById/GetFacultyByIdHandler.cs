@@ -1,14 +1,16 @@
 using Core.Application.Shared;
 using Core.Contracts.Faculties;
 using Core.Domain.Faculties;
-using LightResults;
 using Microsoft.EntityFrameworkCore;
+using Shared.Domain.Errors;
+using ZeroAlloc.Results;
 
 namespace Core.Application.Faculties.GetById;
 
-public sealed class GetFacultyByIdHandler(ICoreDbContext context) : IHandler<GetFacultyByIdCommand, Result<Faculty>>
+public sealed class GetFacultyByIdHandler(ICoreDbContext context)
+    : IHandler<GetFacultyByIdCommand, Result<Faculty, Error>>
 {
-    public async Task<Result<Faculty>> Handle(GetFacultyByIdCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Faculty, Error>> Handle(GetFacultyByIdCommand request, CancellationToken cancellationToken)
     {
         var requestId = new FacultyId(request.FacultyId);
 
@@ -16,9 +18,8 @@ public sealed class GetFacultyByIdHandler(ICoreDbContext context) : IHandler<Get
             .AsNoTracking()
             .FirstOrDefaultAsync(f => f.Id == requestId, cancellationToken);
 
-        if (faculty == null)
-            return Result.Failure<Faculty>(FacultyErrors.FacultyNotFoundById(request.FacultyId));
-
-        return Result.Success(faculty);
+        return faculty is null
+            ? Result<Faculty, Error>.Failure(FacultyErrors.FacultyNotFoundById(request.FacultyId))
+            : Result<Faculty, Error>.Success(faculty);
     }
 }

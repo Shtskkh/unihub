@@ -1,4 +1,5 @@
-using LightResults;
+using Shared.Domain.Errors;
+using ZeroAlloc.Results;
 
 namespace Shared.Domain;
 
@@ -7,5 +8,5 @@ public interface IValueObject<TSelf, TPrimitive>
 {
     TPrimitive Value { get; }
 
-    abstract static Result<TSelf> Create(TPrimitive value);
+    abstract static Result<TSelf, Error> Create(TPrimitive value);
 }

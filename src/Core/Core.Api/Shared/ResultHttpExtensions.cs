@@ -1,26 +1,13 @@
-using LightResults;
-using Shared.Domain;
 using Shared.Domain.Errors;
+using ZeroAlloc.Results;
+using ZeroAlloc.Results.Extensions;
 using IResult = Microsoft.AspNetCore.Http.IResult;
 
 namespace Core.Api.Shared;
 
 public static class ResultHttpExtensions
 {
-    extension(Result result)
-    {
-        public IResult ToHttpResult(Func<IResult> onSuccess)
-        {
-            return result.Match(onSuccess, ToErrorResult);
-        }
-
-        public IResult ToHttpResult()
-        {
-            return result.ToHttpResult(Results.NoContent);
-        }
-    }
-
-    extension<T>(Result<T> result)
+    extension<T>(Result<T, Error> result)
     {
         public IResult ToHttpResult(Func<T, IResult> onSuccess)
         {
@@ -28,12 +15,12 @@ public static class ResultHttpExtensions
         }
     }
 
-    private static IResult ToErrorResult(IError error)
+    private static IResult ToErrorResult(Error error)
     {
-        return error switch
+        return error.Type switch
         {
-            NotFoundError notFoundError => Results.NotFound(notFoundError.Message),
-            ValidationError validationError => Results.BadRequest(validationError.Message),
+            ErrorType.NotFound => Results.NotFound(error.Message),
+            ErrorType.Validation => Results.BadRequest(error.Message),
             _ => Results.InternalServerError(error.Message)
         };
     }

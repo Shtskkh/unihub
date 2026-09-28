@@ -1,17 +1,14 @@
-using LightResults;
 using Shared.Domain.Errors;
+using ZeroAlloc.Results;
 
 namespace Shared.Domain;
 
 public static class TextNormalizer
 {
-    public static Result<string> Normalize(string? text, ValidationError nullOrWhitespaceError)
+    public static Result<string, Error> Normalize(string? text, Error nullOrWhitespaceError)
     {
-        if (string.IsNullOrWhiteSpace(text))
-            return Result.Failure<string>(nullOrWhitespaceError);
-
-        var trimmed = text.Trim();
-
-        return Result.Success(trimmed);
+        return string.IsNullOrWhiteSpace(text)
+            ? Result<string, Error>.Failure(nullOrWhitespaceError)
+            : Result<string, Error>.Success(text.Trim());
     }
 }

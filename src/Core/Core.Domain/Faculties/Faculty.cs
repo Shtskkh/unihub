@@ -21,8 +21,8 @@ public sealed class Faculty : Entity<FacultyId>, IAggregateRoot
 
 public static class FacultyErrors
 {
-    public static NotFoundError FacultyNotFoundById(int id)
+    public static Error FacultyNotFoundById(int id)
     {
-        return new NotFoundError("Faculty.NotFoundById", $"Факультет с ID: {id} не найден.");
+        return Error.NotFound("Faculty.NotFoundById", $"Факультет с ID: {id} не найден.");
     }
 }
