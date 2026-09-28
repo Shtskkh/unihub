@@ -1,6 +1,7 @@
 using Core.Contracts.Departments;
 using Core.Contracts.Faculties;
 using Shared.Domain;
+using Shared.Domain.Errors;
 
 namespace Core.Domain.Departments;
 
@@ -20,4 +21,12 @@ public sealed class Department : Entity<DepartmentId>, IAggregateRoot
     public DepartmentTitle Title { get; private set; }
 
     public FacultyId FacultyId { get; private set; }
+}
+
+public static class DepartmentErrors
+{
+    public static Error NotFoundById(int id)
+    {
+        return Error.NotFound("Department.NotFoundById", $"Кафедра с ID: {id} не найдена.");
+    }
 }
