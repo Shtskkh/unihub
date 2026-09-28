@@ -1,8 +1,10 @@
+using Core.Api.Contracts.Departments;
 using Core.Api.Contracts.Faculties;
 using Core.Api.Shared;
 using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
 using Core.Application.Faculties.GetById;
+using Core.Application.Faculties.GetDepartments;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -48,5 +50,19 @@ public sealed class FacultiesController(IMapper mapper) : ControllerBase
         var commandResult = await handler.Handle(command, ct);
 
         return commandResult.ToHttpResult(id => Results.Created($"/api/v1/faculties/{id}", id));
+    }
+
+    [HttpGet("{facultyId:int}/departments")]
+    [ProducesResponseType(typeof(IReadOnlyCollection<DepartmentDto>), StatusCodes.Status200OK)]
+    public async Task<IResult> GetFacultyDepartmentsAsync(
+        [FromServices] GetFacultyDepartmentsHandler handler,
+        int facultyId,
+        CancellationToken cancellationToken)
+    {
+        var command = new GetFacultyDepartmentsRequest(facultyId);
+        var commandResult = await handler.Handle(command, cancellationToken);
+
+        return commandResult.ToHttpResult(departments =>
+            Results.Ok(departments.Adapt<IReadOnlyCollection<DepartmentDto>>()));
     }
 }
