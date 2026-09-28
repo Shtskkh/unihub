@@ -1,3 +1,4 @@
+using Core.Application.Departments.Create;
 using Core.Application.Faculties.Create;
 using Core.Application.Faculties.GetAll;
 using Core.Application.Faculties.GetById;
@@ -17,6 +18,7 @@ public static class CoreApplicationExtensions
         private void AddRequestHandlers()
         {
             services.RegisterFacultiesHandlers();
+            services.RegisterDepartmentsHandlers();
         }
 
         private void RegisterFacultiesHandlers()
@@ -24,6 +26,11 @@ public static class CoreApplicationExtensions
             services.AddScoped<CreateFacultyHandler>();
             services.AddScoped<GetAllFacultiesHandler>();
             services.AddScoped<GetFacultyByIdHandler>();
+        }
+
+        private void RegisterDepartmentsHandlers()
+        {
+            services.AddScoped<CreateDepartmentHandler>();
         }
     }
 }
