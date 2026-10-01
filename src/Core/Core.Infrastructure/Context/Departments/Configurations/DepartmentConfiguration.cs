@@ -2,9 +2,9 @@ using Core.Contracts.Departments;
 using Core.Contracts.Faculties;
 using Core.Domain.Departments;
 using Core.Domain.Faculties;
-using Core.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Shared.Infrastructure;
 
 namespace Core.Infrastructure.Context.Departments.Configurations;
 
@@ -31,7 +31,7 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
             .HasConversion(x => x.Value, value => new FacultyId(value))
             .HasColumnName("faculty_id")
             .IsRequired();
-        
+
         builder.HasOne<Faculty>()
             .WithMany()
             .HasForeignKey(x => x.FacultyId)

@@ -1,8 +1,8 @@
 using Core.Contracts.Faculties;
 using Core.Domain.Faculties;
-using Core.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Shared.Infrastructure;
 
 namespace Core.Infrastructure.Context.Faculties.Configurations;
 

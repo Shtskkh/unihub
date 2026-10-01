@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shared.Domain;
 using ZeroAlloc.Results.Extensions;
 
-namespace Core.Infrastructure.Shared;
+namespace Shared.Infrastructure;
 
 public sealed class ValueObjectConverter<TValueObject, TPrimitive> : ValueConverter<TValueObject, TPrimitive>
     where TValueObject : IValueObject<TValueObject, TPrimitive>
