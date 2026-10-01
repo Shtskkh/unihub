@@ -8,6 +8,14 @@
     <Project Path="src/Core/Core.Infrastructure/Core.Infrastructure.csproj" />
     <Project Path="src/Core/Core.Migrator/Core.Migrator.csproj" />
   </Folder>
+  <Folder Name="/src/Identity/">
+    <Project Path="src/Identity/Identity.Api/Identity.Api.csproj" />
+    <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
+    <Project Path="src/Identity/Identity.Contracts/Identity.Contracts.csproj" />
+    <Project Path="src/Identity/Identity.Domain/Identity.Domain.csproj" />
+    <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
+    <Project Path="src/Identity/Identity.Migrator/Identity.Migrator.csproj" />
+  </Folder>
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/Shared.Domain/Shared.Domain.csproj" />
     <Project Path="src/Shared/Shared.Migrator/Shared.Migrator.csproj" />
