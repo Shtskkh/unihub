@@ -5,5 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
       <PackageVersion Include="ZeroAlloc.Results" Version="1.4.4"/>
+
+      <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.13"/>
+      <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.13"/>
+      <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.13"/>
+
+      <PackageVersion Include="Npgsql.EntityFramework" Version="10.0.3"/>
+      <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3"/>
   </ItemGroup>
 </Project>
