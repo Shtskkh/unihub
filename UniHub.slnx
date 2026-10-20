@@ -3,4 +3,8 @@
   <Folder Name="/src/BuildingBlocks/">
     <Project Path="src/BuildingBlocks/UniHub.SharedKernel/UniHub.SharedKernel.csproj" />
   </Folder>
+    <Folder Name="/src/Modules/"/>
+    <Folder Name="/src/Modules/Core/">
+        <Project Path="src/Modules/Core/Core.Domain/Core.Domain.csproj"/>
+    </Folder>
 </Solution>
