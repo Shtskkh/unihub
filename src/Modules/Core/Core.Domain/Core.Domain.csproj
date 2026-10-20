@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\BuildingBlocks\UniHub.SharedKernel\UniHub.SharedKernel.csproj"/>
+        <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj"/>
     </ItemGroup>
 
 </Project>
