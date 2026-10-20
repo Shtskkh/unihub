@@ -7,5 +7,6 @@
     <Folder Name="/src/Modules/Core/">
         <Project Path="src/Modules/Core/Core.Contracts/Core.Contracts.csproj"/>
         <Project Path="src/Modules/Core/Core.Domain/Core.Domain.csproj"/>
+        <Project Path="src/Modules/Core/Core.Infrastructure/Core.Infrastructure.csproj"/>
     </Folder>
 </Solution>
