@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlocks/">
+      <Project Path="src/BuildingBlocks/UniHub.BuildingBlocks.Application/UniHub.BuildingBlocks.Application.csproj"/>
     <Project Path="src/BuildingBlocks/UniHub.SharedKernel/UniHub.SharedKernel.csproj" />
   </Folder>
     <Folder Name="/src/Modules/"/>
