@@ -4,5 +4,6 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
+      <PackageVersion Include="ZeroAlloc.Results" Version="1.4.4"/>
   </ItemGroup>
 </Project>
